@@ -1,17 +1,19 @@
-//@ts-nocheck
-
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
 import OverLay from "@/components/OverLay";
-import Map from "@/components/Map";
 import { Suspense } from "react";
 import "leaflet/dist/leaflet.css";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("../components/Map"), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Header
@@ -98,4 +100,5 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+export default Home;
