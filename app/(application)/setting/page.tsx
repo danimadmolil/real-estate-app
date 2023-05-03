@@ -1,6 +1,6 @@
 import React from "react";
 
-const SettingPage =()=> {
+const SettingPage = () => {
   const agentDetail = [
     { title: "Agency", value: "All American Real Estate" },
     { title: "Agent License", value: "1342 7946 0097 324" },
@@ -11,11 +11,11 @@ const SettingPage =()=> {
     },
   ];
   return (
-    <div className="w-full gap-5 h-full bg-gray-50 p-2 grid grid-cols-[3fr,1fr]">
+    <div className=" w-full gap-5 h-full bg-gray-50 p-2 grid sm:grid-cols-[1fr]   1400:grid-cols-[3fr,1fr]">
       {/** col1 */}
-      <div className="grow-0 h-full gap-5 shrink-0  rounded-lg w-full grid grid-rows-[3fr,1.8fr]">
-        {/** col1 row1 */}
-        <div className="grid gap-5 grid-cols-[1fr,3fr]">
+      <div className="grow-0 h-full gap-5 shrink-0  rounded-lg w-full grid 1600:grid-rows-[3fr,1.8fr]">
+        {/** col1 row1 (user , Agent Detail) */}
+        <div className="grid gap-5  900:grid-cols-[1fr,3fr]">
           {/** col1 row1 col1  (agent personal info)*/}
           <div className="flex flex-col p-5 bg-white  h-full rounded-lg relative text-gray-800">
             <svg
@@ -24,7 +24,7 @@ const SettingPage =()=> {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 absolute cursor-pointer right-2 top-2 cursor-pointer ">
+              className="w-6 h-6 absolute right-2 top-2 cursor-pointer ">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -35,13 +35,13 @@ const SettingPage =()=> {
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKkENwiLRgpBs8-E5WDx0sdgTntxqBfz05YCmaRy1GiFIOxFggCYAohhuzUwcGy5RbwDs&usqp=CAU"
               className="object-cover rounded-full w-28 h-28 mt-14 self-center "
             />
-            <p className="xl:text-3xl 3xl:text-4xl lg:text-2xl font-mono font-bold  self-center mt-4">
+            <p className="1700:text-3xl 1800:text-4xl lg:text-2xl font-mono font-bold  self-center mt-4">
               Robin Williams
             </p>
             {/** divider */}
             <div className="border-t-[1px] border-t-gray-300 w-[100%] relative left-1/2 -translate-x-1/2 mt-4 "></div>
             {/** info container */}
-            <div className="flex mt-5">
+            <div className="flex md:justify-center mt-5">
               <div className="flex flex-col w-1/3">
                 <p>Age:</p>
                 <p>City:</p>
@@ -145,9 +145,9 @@ const SettingPage =()=> {
         ].map((item, index) => (
           <div
             key={index}
-            className="p-3 mt-4 shadow-sm rounded-xl bg-white border-gray-100 border flex items-center">
+            className="p-3 mt-4 shadow-sm rounded-xl hover:bg-gray-100 cursor-pointer bg-white border-gray-100 border flex items-center">
             {/** icon */}
-            <div className="rounded-full shrink-0 flex items-center justify-center w-16 h-16 border-purple-500 bg-purple-200 text-purple-500">
+            <div className="rounded-full shrink-0 flex items-center justify-center w-11 h-11 900:w-12 900:h-12 1600:w-16 1600:h-16 border-purple-500 bg-purple-200 text-purple-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -163,9 +163,9 @@ const SettingPage =()=> {
               </svg>
             </div>
             {/** title and subtitle */}
-            <div className="shrink-0 ml-4 flex flex-col">
-              <p className="text-black text-2xl">{item.title}</p>
-              <p className="text-gray-600 text-lg">{item.sub}</p>
+            <div className=" ml-4 flex flex-col">
+              <p className="text-black text-xl 1600:text-2xl">{item.title}</p>
+              <p className="text-gray-600 text-lg 1600:text-xl">{item.sub}</p>
             </div>
             <div className="shrink-0 flex ml-auto items-center justify-center rounded-full bg-green-600 w-7 h-7">
               {item.badge}
@@ -175,5 +175,5 @@ const SettingPage =()=> {
       </div>
     </div>
   );
-}
+};
 export default SettingPage;
