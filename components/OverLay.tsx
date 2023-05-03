@@ -80,7 +80,7 @@ const OverLay = async () => {
                 className="h-auto flex-col flex border-2 p-2 rounded-lg shadow-md ">
                 <img
                   src={result}
-                  className="object-cover h-40 w-full rounded-lg mb-4 shadow-lg"
+                  className="object-cover h-52 w-full rounded-lg mb-4 shadow-lg"
                 />
                 <div className="flex  flex-col pl-4">
                   {/** name */}

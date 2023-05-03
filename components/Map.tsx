@@ -5,10 +5,9 @@ import {
   TileLayer,
   Marker,
   Popup,
-  Mapcon,
   ZoomControl,
 } from "react-leaflet";
-
+import "leaflet/dist/leaflet.css";
 export default function Map() {
   const [geoData, setGeoData] = useState({ lat: 64.536634, lng: 16.779852 });
 
