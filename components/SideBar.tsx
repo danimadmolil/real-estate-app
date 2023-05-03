@@ -1,13 +1,15 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const SideBar = ({}) => {
   const [activeTab, setActiveTab] = useState<
     "home" | "map" | "setting" | string
-  >(window.location.pathname.replace("/", ""));
-
+  >("");
+  useEffect(() => {
+    setActiveTab(window.location.pathname.replace("/", ""));
+  }, []);
   return (
     <div className="fixed z-40 pt-14 bg-white h-full flex flex-col items-center left-0 top-0 w-20">
       <Link
