@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const Map = dynamic(() => import("../../../components/Map"), {
   ssr: false,
 });
-export default function MapPage() {
+const MapPage = () => {
   return (
     <>
       <Suspense fallback={<OverLay.FallBack />}>
@@ -15,4 +15,5 @@ export default function MapPage() {
       </div>
     </>
   );
-}
+};
+export default MapPage;

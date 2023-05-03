@@ -6,12 +6,13 @@ import SideBar from "@/components/SideBar";
 import OverLay from "@/components/OverLay";
 import { Suspense } from "react";
 import { useEffect, useState, useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 const inter = Inter({ subsets: ["latin"] });
 
 const IndexPage = () => {
   const [isThereWindow, setIsThereWindow] = useState(false);
-  console.log("isTherWinodw", isThereWindow);
+
   useEffect(() => {
     setIsThereWindow(true);
   }, []);

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SettingPage() {
+const SettingPage =()=> {
   const agentDetail = [
     { title: "Agency", value: "All American Real Estate" },
     { title: "Agent License", value: "1342 7946 0097 324" },
@@ -176,3 +176,4 @@ export default function SettingPage() {
     </div>
   );
 }
+export default SettingPage;
