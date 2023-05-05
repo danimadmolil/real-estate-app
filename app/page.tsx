@@ -29,7 +29,7 @@ const IndexPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="w-28 h-24 bg-gray-900"></motion.div> */}
-        <div className="flex justify-center  content-center relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="flex flex-wrap justify-center  content-center relative left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {[
             "R",
             "E",
