@@ -94,7 +94,9 @@ export default function RootLayout({
           )}
         />
         <SideBar />
-        <div className="h-full w-full pt-14 pl-20 overflow-y-scroll bg-gray-50">{children}</div>
+        <div className="h-full w-full pt-14 pb-20 md:pl-20 md:pb-0  bg-gray-50">
+          {children}
+        </div>
       </body>
     </html>
   );

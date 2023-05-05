@@ -11,7 +11,7 @@ const SettingPage = () => {
     },
   ];
   return (
-    <div className=" w-full gap-5 h-full bg-gray-50 p-2 grid sm:grid-cols-[1fr]   1400:grid-cols-[3fr,1fr]">
+    <div className=" w-full overflow-y-scroll gap-5 h-full bg-gray-50 p-2 grid sm:grid-cols-[1fr]   1400:grid-cols-[3fr,1fr]">
       {/** col1 */}
       <div className="grow-0 h-full gap-5 shrink-0  rounded-lg w-full grid 1600:grid-rows-[3fr,1.8fr]">
         {/** col1 row1 (user , Agent Detail) */}

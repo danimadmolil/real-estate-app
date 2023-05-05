@@ -11,11 +11,11 @@ const SideBar = ({}) => {
     setActiveTab(window.location.pathname.replace("/", ""));
   }, []);
   return (
-    <div className="fixed z-40 pt-14 bg-white h-full flex flex-col items-center left-0 top-0 w-20">
+    <div className="fixed bottom-0 justify-around z-40 w-full h-20 md:pt-14 bg-white md:h-full flex md:flex-col items-center md:left-0 md:top-0 md:w-20">
       <Link
         href={"/"}
         onClick={() => setActiveTab("home")}
-        className={`cursor-pointer rounded-full w-7 h-7 p-2 mt-36 flex justify-center items-center  box-content ${
+        className={`cursor-pointer rounded-full w-7 h-7 p-2  flex justify-center items-center  box-content ${
           activeTab === "home" && "bg-blue-500 transition-all duration-200"
         }`}>
         <svg
@@ -37,7 +37,7 @@ const SideBar = ({}) => {
       <Link
         href={"map"}
         onClick={() => setActiveTab("map")}
-        className={`cursor-pointer text-gray-950 rounded-full w-7 h-7 p-2 mt-36 flex justify-center items-center  box-content ${
+        className={`cursor-pointer text-gray-950 rounded-full w-7 h-7 p-2  flex justify-center items-center  box-content ${
           activeTab === "map" &&
           "bg-blue-500 text-white transition-all duration-200"
         }`}>
@@ -63,7 +63,7 @@ const SideBar = ({}) => {
       <Link
         href="/setting"
         onClick={() => setActiveTab("setting")}
-        className={`cursor-pointer text-gray-950 rounded-full w-7 h-7 p-2 mt-36 flex justify-center items-center  box-content ${
+        className={`cursor-pointer text-gray-950 rounded-full w-7 h-7 p-2  flex justify-center items-center  box-content ${
           activeTab === "setting" &&
           "bg-blue-500 transition-all duration-200 text-white"
         }`}>
