@@ -1,4 +1,5 @@
-import { Suspense } from "react";
+"use client";
+import { useState } from "react";
 
 const houseImages = [
   "https://mir-s3-cdn-cf.behance.net/project_modules/1400/f91cf8167512561.642aa42bc51f4.jpg",
@@ -8,13 +9,65 @@ const houseImages = [
   "https://mir-s3-cdn-cf.behance.net/project_modules/1400/c472aa151661891.630fc8f207221.jpg",
   "https://mir-s3-cdn-cf.behance.net/project_modules/1400/d71650161025899.63be84437cb60.jpg",
 ];
-const OverLay = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+const OverLay = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="shadow-lg overflow-hidden  px-8 py-5 z-50 rounded-lg h-[calc(88%)] bg-white fixed left-24 top-20 w-[calc(40%)] ">
-      {/** search bar container */}
-      <div className=" w-full  justify-between flex items-center h-20">
-        <div className="  flex w-2/3 h-[58px] items-center p-1 rounded-lg bg-gray-100 search">
+    <div
+      style={{
+        transition: open
+          ? "clip-path 500ms 0.25s, transform 0.5s"
+          : "transform 650ms 150ms , clip-path  0.6s",
+        clipPath: open
+          ? " circle(100% at 50% 50%)"
+          : " circle(2rem at 50% 50%)",
+      }}
+      className={`
+       will-change-[all]
+      ${open ? "" : "origin-center -translate-x-1/3 translate-y-1/3  "} 
+      shadow-lg  overflow-hidden px-4 md:px-8 py-5 z-50 rounded-lg h-[calc(88%)] bg-white fixed md:left-24 top-20 w-full md:w-[calc(60%)] lg:w-[60%]  xl:w-2/4`}>
+      <div onClick={() => setOpen(false)}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6 text-gray-900 cursor-pointer">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </div>
+      <div
+        onClick={() => {
+          setOpen(true);
+        }}
+        className={`${
+          open
+            ? "opacity-0 transition-all duration-75 delay-[0.25s]"
+            : "opacity-1 transition-all duration-0 delay-[0.6s]"
+        }  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute z-[9999999] w-16 h-16 bg-blue-400 rounded-full flex items-center justify-center cursor-pointer `}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+      </div>
+      {/** search bar container row */}
+      <div className="w-full gap-3 flex flex-col  xl:grid xl:grid-cols-[2fr,1fr] xl:h-14 h-20 mb-8">
+        {/** search input */}
+        <div className="flex  h-full items-center p-1 rounded-lg bg-gray-100 search">
           <div className="flex h-full items-center w-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +88,8 @@ const OverLay = async () => {
             />
           </div>
         </div>
-        <div className="flex px-2 box-content bg-gray-100 p-2 rounded-md w-[190px] items-center  justify-between">
+        {/** buy & rent buttons */}
+        <div className="flex shrink px-2 box-content bg-gray-100 p-2 rounded-md   items-center  justify-between">
           <div className="cursor-pointer  text-gray-900 w-[80px] h-[40px] rounded-md bg-white flex items-center justify-center">
             Buy
           </div>
@@ -47,16 +101,16 @@ const OverLay = async () => {
       {/** filters  */}
       <div className="items-center h-20 w-full bg-gray-100 flex justify-around rounded-md">
         {/** filter buttons */}
-        <div className="text-gray-900 cursor-pointer w-[145px] h-[50px] rounded-md bg-white border border-gray-300 shadow-sm flex items-center justify-center">
+        <div className="text-gray-900 cursor-pointer w-10 md:w-[120px] xl:w-[145px] h-[50px] rounded-md bg-white border border-gray-300 shadow-sm flex items-center justify-center">
           All Price
         </div>
-        <div className="cursor-pointer w-[145px] h-[50px] rounded-md bg-blue-600 flex items-center justify-center">
+        <div className="cursor-pointer w-10 md:w-[120px] xl:w-[145px] h-[50px] rounded-md bg-blue-600 flex items-center justify-center">
           3-2 Bed
         </div>
-        <div className="text-gray-900 cursor-pointer w-[145px] h-[50px] rounded-md bg-white border border-gray-300 shadow-sm flex items-center justify-center">
+        <div className="text-gray-900 cursor-pointer w-10 md:w-[120px] xl:w-[145px] h-[50px] rounded-md bg-white border border-gray-300 shadow-sm flex items-center justify-center">
           All Types
         </div>
-        <div className="text-gray-900 cursor-pointer w-[145px] h-[50px] rounded-md bg-white border border-gray-300 shadow-sm flex items-center justify-center">
+        <div className="text-gray-900 cursor-pointer w-10 md:w-[120px] xl:w-[145px] h-[50px] rounded-md bg-white border border-gray-300 shadow-sm flex items-center justify-center">
           More Filters
         </div>
       </div>
@@ -72,11 +126,11 @@ const OverLay = async () => {
       </div>
       {/** result  */}
       <div className="h-[70%] overflow-y-scroll scroll-smooth pb-6 pr-4">
-        <div className="grid gap-x-4 gap-y-7 grid-cols-2 ">
-          {houseImages.map((result) => {
+        <div className="grid gap-x-4 gap-y-7 grid-cols-1 lg:grid-cols-2 ">
+          {houseImages.map((result, index) => {
             return (
               <div
-                key={Date.now()}
+                key={index}
                 className="h-auto flex-col flex border-2 p-2 rounded-lg shadow-md ">
                 <img
                   src={result}
@@ -166,15 +220,17 @@ const OverLay = async () => {
 //fallback component
 OverLay.FallBack = function FallBack() {
   return (
-    <div className="shadow bg-gray-200 px-8 py-5 z-50 rounded-lg h-[calc(88%)] bg-white fixed left-24 top-20 w-[calc(40%)] ">
-      <div className=" w-full  justify-between flex items-center h-20">
-        <div className="animate-pulse   flex w-2/3 h-[58px] items-center p-1 rounded-lg bg-gray-300 search">
-          <div className="flex w-full"></div>
+    <div className="shadow-lg overflow-hidden  px-8 py-5 z-50 rounded-lg h-[calc(88%)] bg-white fixed left-24 top-20 w-[calc(40%)] ">
+      {/** overlay header */}
+      <div className="w-full gap-3 flex flex-col  xl:grid xl:grid-cols-[2fr,1fr] xl:h-14 h-20 mb-8">
+        {/** search input */}
+        <div className="animate-pulse flex  h-full items-center p-1 rounded-lg bg-gray-300 search">
+          <div className="animate-pulse px-3 ml-2  w-6 h-6 rounded-full cursor-pointer  bg-gray-500"></div>
         </div>
         {/** buy and rent button container */}
-        <div className="animate-pulse delay-150 flex px-2 box-content bg-gray-300 p-2 rounded-md w-[190px] h-[42px] items-center  justify-between">
-          <div className="cursor-pointer  text-gray-900 w-[80px] h-[40px] rounded-md bg-gray-400 flex items-center justify-center"></div>
-          <div className="cursor-pointer w-[80px] h-[40px] rounded-md bg-gray-400 flex items-center justify-center"></div>
+        <div className="animate-pulse flex shrink px-2 box-content bg-gray-300 p-2 rounded-md   items-center  justify-between">
+          <div className="animate-pulse cursor-pointer  text-gray-900 w-[80px] h-[40px] rounded-md bg-gray-400 flex items-center justify-center"></div>
+          <div className="animate-pulse cursor-pointer w-[80px] h-[40px] rounded-md bg-gray-400 flex items-center justify-center"></div>
         </div>
       </div>
       {/** filter */}
