@@ -7,9 +7,9 @@ const Map = dynamic(() => import("../../../components/Map"), {
 const MapPage = () => {
   return (
     <>
-      <Suspense fallback={<OverLay.FallBack />}>
+      {/* <Suspense fallback={<OverLay.FallBack />}> */}
         <OverLay key={"map-overlay"} />
-      </Suspense>
+      {/* </Suspense> */}
       <div className="relative z-[5] h-full w-full  overflow-hidden  ">
         <Map />
       </div>
