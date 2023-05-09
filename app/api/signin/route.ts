@@ -2,7 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/db";
 import { comparePasswords, createJWT } from "@/lib/auth";
 import { serialize } from "cookie";
-
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
 export async function POST(req, res: NextApiResponse) {
   const { email, password } = await req.json();
   if (req.method === "POST") {
