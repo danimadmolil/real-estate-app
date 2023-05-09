@@ -1,6 +1,10 @@
+import { getUserFromCookie } from "@/lib/auth";
+import { cookies } from "next/dist/client/components/headers";
 import React from "react";
 
 const SettingPage = async () => {
+  const user = await getUserFromCookie(cookies());
+  
   await new Promise((r) => setTimeout(r, 2000));
   const agentDetail = [
     { title: "Agency", value: "All American Real Estate" },
@@ -37,7 +41,7 @@ const SettingPage = async () => {
               className="object-cover rounded-full w-28 h-28 mt-14 self-center "
             />
             <p className="1700:text-3xl 1800:text-4xl lg:text-2xl font-mono font-bold  self-center mt-4">
-              Robin Williams
+              {user && user.name}
             </p>
             {/** divider */}
             <div className="border-t-[1px] border-t-gray-300 w-[100%] relative left-1/2 -translate-x-1/2 mt-4 "></div>
