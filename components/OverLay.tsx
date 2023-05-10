@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-
 const houseImages = [
   "https://mir-s3-cdn-cf.behance.net/project_modules/1400/f91cf8167512561.642aa42bc51f4.jpg",
   "https://mir-s3-cdn-cf.behance.net/project_modules/1400/bd9996168085059.643498594801b.jpg",
@@ -20,7 +19,7 @@ const OverLay = () => {
           : "transform 650ms 150ms , clip-path  0.6s",
         clipPath: open
           ? " circle(100% at 50% 50%)"
-          : " circle(2rem at 50% 50%)",
+          : " circle(1.9rem at 50% 50%)",
       }}
       className={`
        will-change-[all]
