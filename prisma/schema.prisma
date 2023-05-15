@@ -11,34 +11,54 @@ datasource db {
 }
 
 model users {
-  id       BigInt   @id @default(autoincrement())
-  name     String
-  email    String   @unique
-  password String
-  isAgent  Boolean?
-  isAdmin  Boolean?
+  id         BigInt    @id @default(autoincrement())
+  name       String
+  email      String    @unique
+  password   String
+  isAgent    Boolean?
+  isAdmin    Boolean?
+  listings   Listing[]
+  created_at DateTime  @default(now())
+  updated_at DateTime?
 
-  @@index([isAdmin, isAgent])
+  @@index([isAdmin, isAgent, email])
 }
 
 model Listing {
-  id          String        @id @default(uuid())
+  id          Int             @id @default(autoincrement())
   title       String
-  description String?
-  ListingType ListingType[]
+  description String
+  price       Float
+  address     String
+  postalCode  String
+  bed         Int?
+  city        String
+  county      String
+  lat         Float
+  lng         Float
+  status      ListingStatus   @default(APPROVED)
+  type        ListingType
+  category    ListingCategory
+  createdBy   users           @relation(fields: [createdById], references: [id])
+  createdById BigInt
+  updatedAt   DateTime        @updatedAt
 }
 
-model ListingType {
-  id String @id @default(uuid())
-
-  type   Type    @relation(fields: [typeId], references: [id])
-  list   Listing @relation(fields: [listId], references: [id])
-  listId String
-  typeId String
+enum ListingStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
 
-model Type {
-  id          String        @id @default(uuid())
-  name        String
-  ListingType ListingType[]
+enum ListingCategory {
+  HOUSE
+  APARTMENT
+  LAND
+  COMMERCIAL
+  GUSTHOUSE
+}
+
+enum ListingType {
+  SELL
+  RENT
 }
