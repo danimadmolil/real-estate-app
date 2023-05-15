@@ -33,3 +33,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.leaflet-popup-content-wrapper{
+  margin: 0 !important;
+}
+.leaflet-popup-content{
+  margin: 0 !important;
+}

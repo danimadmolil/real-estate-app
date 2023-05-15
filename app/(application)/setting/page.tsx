@@ -1,10 +1,11 @@
+import CreateListing from "@/components/Listing/CreateListing";
 import { getUserFromCookie } from "@/lib/auth";
 import { cookies } from "next/dist/client/components/headers";
 import React from "react";
 
 const SettingPage = async () => {
   const user = await getUserFromCookie(cookies());
-  
+
   await new Promise((r) => setTimeout(r, 2000));
   const agentDetail = [
     { title: "Agency", value: "All American Real Estate" },
@@ -118,17 +119,7 @@ const SettingPage = async () => {
           </div>
         </div>
         {/** col1 row2 (active listings) */}
-        <div className="h-full grid grid-rows-[1fr,6fr] bg-white rounded-md p-4 text-gray-900">
-          <p className="text-xl ">Active Listings</p>
-          {/** listings container */}
-          <div className="flex py-2 w-full h-full overflow-x-scroll">
-            {new Array(20).fill(undefined).map((item, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-40 h-full flex bg-gray-300 rounded-md ml-4"></div>
-            ))}
-          </div>
-        </div>
+        <CreateListing />
       </div>
       {/** col2 */}
       <div className="p-5 h-full w-full shrink-0 bg-white rounded-lg text-gray-900">
