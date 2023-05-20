@@ -12,6 +12,10 @@ import Select from "../Select";
 import Map from "../Map";
 import LocationPicker from "../LocationPicker";
 import GeneralInput from "../GeneralInput";
+import ReactImageUploading from "react-images-uploading";
+import { UploadButton } from "react-uploader";
+import ImageUploader from "../ImageDropZone";
+
 type Listing = {
   id: number;
   title: string;
@@ -37,6 +41,7 @@ export default function CreateListing() {
   const cancelButtonRef = useRef(null);
   const [submitError, setSubmitError] = useState("");
   const [openMap, setOpenMap] = useState(false);
+  const fd = useRef(new FormData());
   useEffect(() => {
     (async () => {
       const response = await fetch("/api/listing");
@@ -49,10 +54,17 @@ export default function CreateListing() {
   // console.log(formData);
   async function handleUpload() {
     setSubmitLoading(true);
+
+    const body: FormData = fd.current;
+   
+    Object.keys(formData).forEach((key: string) => {
+      body.delete(key);
+      body.append(key, formData[key]);
+    });
     try {
       const createdListing = await fetch("/api/listing", {
         method: "post",
-        body: JSON.stringify(formData),
+        body,
       }).then((res) => res.json());
       setOpenDialog(false);
       setListings([createdListing]);
@@ -379,6 +391,15 @@ export default function CreateListing() {
                           }}
                           inputType="text"
                         />
+                        <ImageUploader muli={true} label="images">
+                          {({ files, formData }) => {
+                            fd.current.delete("files[]");
+                            files.forEach((file) => {
+                              fd.current.append("files[]", file);
+                            });
+                            console.log(formData.current.getAll("files"));
+                          }}
+                        </ImageUploader>
                       </div>
                     </div>
                   </div>

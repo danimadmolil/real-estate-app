@@ -14,7 +14,7 @@ interface SelectProps {
   className?: string;
   onChange?: (value: string) => void;
 }
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 

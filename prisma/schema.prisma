@@ -39,6 +39,7 @@ model Listing {
   status      ListingStatus   @default(APPROVED)
   type        ListingType
   category    ListingCategory
+  images      Json?
   createdBy   users           @relation(fields: [createdById], references: [id])
   createdById BigInt
   updatedAt   DateTime        @updatedAt
