@@ -1,12 +1,6 @@
 "use client";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import Header from "@/components/Header";
-import SideBar from "@/components/SideBar";
-import OverLay from "@/components/OverLay";
-import { Suspense } from "react";
 import { useEffect, useState, useRef } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 const inter = Inter({ subsets: ["latin"] });
 

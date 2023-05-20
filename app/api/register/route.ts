@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/db";
 import { createJWT, hashPassword } from "@/lib/auth";
 import { serialize } from "cookie";
+
 BigInt.prototype.toJSON = function () {
   return this.toString();
 };
@@ -17,16 +18,8 @@ export async function POST(req, res) {
       },
     });
 
-    const jwt = await createJWT(user);
     return new Response(JSON.stringify({ message: "success" }), {
       status: 200,
-      // headers: {
-      //   "Set-Cookie": serialize(process.env.COOKIE_NAME, jwt, {
-      //     httpOnly: true,
-      //     path: "/",
-      //     maxAge: 60 * 60 * 24 * 7,
-      //   }),
-      // },
     });
   } else {
     return new Response(

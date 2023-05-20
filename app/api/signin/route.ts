@@ -18,9 +18,9 @@ export async function POST(req, res: NextApiResponse) {
       return new Response("Failed to login", { status: 401 });
     }
 
-    const isUser = await comparePasswords(password, user.password);
+    const passwordMatch = await comparePasswords(password, user.password);
 
-    if (isUser) {
+    if (passwordMatch) {
       const jwt = await createJWT(user);
       return new Response(JSON.stringify({ user: user }), {
         status: 200,

@@ -6,7 +6,7 @@ import React from "react";
 const SettingPage = async () => {
   const user = await getUserFromCookie(cookies());
 
-  await new Promise((r) => setTimeout(r, 2000));
+  // await new Promise((r) => setTimeout(r, 2000));
   const agentDetail = [
     { title: "Agency", value: "All American Real Estate" },
     { title: "Agent License", value: "1342 7946 0097 324" },
