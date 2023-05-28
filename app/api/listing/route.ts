@@ -6,14 +6,15 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 import { v4 as uuidv4 } from "uuid";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { useSearchParams } from "next/navigation";
 
 var Minio = require("minio");
 var minioClient: Client = new Minio.Client({
-  endPoint: "minio-d3814n.chbk.run",
+  endPoint: process.env.MINIO_ENDPOINT,
 
-  accessKey: "gGa4j1UNUkyVikjJ0wbCpvhC8IAsyj6n",
-  secretKey: "Z38FtUNxT10qtdEfnGpdxIXlZkMFcNgm",
+  accessKey: process.env.ACCESS_KEY,
+  secretKey: process.env.SECRET_KEY,
 });
 type RequestBody = {
   type: "Rent" | "Sell";
@@ -32,20 +33,29 @@ type RequestBody = {
 BigInt.prototype.toJSON = function () {
   return this.toString();
 };
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const nLat = request.nextUrl.searchParams.get("nLat");
+  const nLng = request.nextUrl.searchParams.get("nLng");
+  const sLat = request.nextUrl.searchParams.get("sLat");
+  const sLng = request.nextUrl.searchParams.get("sLng");
+  console.log("search", { nLng, nLat, sLng, sLat });
   // const bucketName = "images";
   // const image = await minioClient.getObject(bucketName, "hello-file");
   // console.log("images", image);
   // return new NextResponse(image);
 
   const listings = await db.listing.findMany({
+    where: {
+      lat: { lte: Number(nLat), gte: Number(sLat) },
+      lng: { lte: Number(nLng), gte: Number(sLng) },
+    },
     include: { createdBy: { select: { name: true } } },
   });
   return new Response(JSON.stringify(listings));
 }
 
 export async function POST(req: Request) {
-  const bucketName = "images";
+  const bucketName = process.env.BUCKET_NAME;
   const requestBody = await req.formData();
   let urls: string[] = [];
   const location = requestBody

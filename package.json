@@ -19,6 +19,7 @@
     "@types/react-dom": "18.2.1",
     "autoprefixer": "10.4.14",
     "bcrypt": "^5.1.0",
+    "caf": "^15.0.1",
     "cookie": "^0.5.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.2",
