@@ -73,7 +73,9 @@ export default function UserMenuDropDown({ className }) {
   }
 
   return !!user ? (
-    <Menu as="div" className={`relative inline-block text-left ${className}`}>
+    <Menu
+      as="div"
+      className={` relative inline-block text-left ${className} dark:text-white`}>
       {({ open }) => (
         <>
           <div>
@@ -83,14 +85,14 @@ export default function UserMenuDropDown({ className }) {
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKkENwiLRgpBs8-E5WDx0sdgTntxqBfz05YCmaRy1GiFIOxFggCYAohhuzUwcGy5RbwDs&usqp=CAU"
                 alt="User Avatar"
               />
-              <span className="text-gray-800">{user.name}</span>
+              <span className="text-gray-800 dark:text-white">{user.name}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className={`w-6 h-6 ${
+                className={`w-6 h-6 dark:text-white ${
                   open ? "transform rotate-180" : ""
                 } w-5 h-5 text-gray-500`}>
                 <path
@@ -110,7 +112,7 @@ export default function UserMenuDropDown({ className }) {
             leave="transition ease-in duration-75"
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95">
-            <Menu.Items className="absolute w-44 right-0 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute w-44 right-0 mt-2 origin-top-right dark:bg-black bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black  ring-opacity-5 focus:outline-none">
               <div className="px-1 py-1 ">
                 <Menu.Item>
                   {({ active }) => (
@@ -118,8 +120,8 @@ export default function UserMenuDropDown({ className }) {
                       href="/setting"
                       className={`${
                         active
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-gray-700 cursor-pointer"
+                          ? "bg-gray-100 text-gray-900 "
+                          : "text-gray-700 dark:text-white cursor-pointer"
                       } flex items-center justify-between w-full px-2 py-2 text-sm`}>
                       <span>Account Settings</span>
                     </Link>
@@ -130,7 +132,9 @@ export default function UserMenuDropDown({ className }) {
                     <a
                       onClick={handleSignOut}
                       className={`${
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700 "
+                        active
+                          ? "bg-gray-100 text-gray-900"
+                          : "text-gray-700 dark:text-white "
                       } flex items-center justify-between w-full px-2 py-2 text-sm cursor-pointer`}>
                       <span>Sign out</span>
                     </a>

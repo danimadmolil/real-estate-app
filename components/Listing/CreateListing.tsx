@@ -15,6 +15,7 @@ import GeneralInput from "../GeneralInput";
 import ReactImageUploading from "react-images-uploading";
 import { UploadButton } from "react-uploader";
 import ImageUploader from "../ImageDropZone";
+import dynamic from "next/dynamic";
 
 type Listing = {
   id: number;
@@ -33,7 +34,7 @@ type FormType = {
   price?: string;
   bed?: string;
 };
-export default function CreateListing() {
+function CreateListing() {
   const [openDialog, setOpenDialog] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [formData, setFormData] = useState<FormType>({});
@@ -56,7 +57,7 @@ export default function CreateListing() {
     setSubmitLoading(true);
 
     const body: FormData = fd.current;
-   
+
     Object.keys(formData).forEach((key: string) => {
       body.delete(key);
       body.append(key, formData[key]);
@@ -75,7 +76,7 @@ export default function CreateListing() {
     }
   }
   return (
-    <>
+    <div>
       <Transition.Root show={openDialog} as={Fragment}>
         <Dialog
           as="div"
@@ -104,9 +105,12 @@ export default function CreateListing() {
                 leave="ease-in duration-200"
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                <Dialog.Panel className=" relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <Dialog.Panel
+                  className={`relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg ${
+                    openMap && "h-[300px]"
+                  }`}>
                   <div
-                    className={`absolute w-full flex transform-gpu duration-200  h-full  ${
+                    className={`absolute  w-full flex transform-gpu duration-200  h-full  ${
                       openMap ? "translate-x-0" : "translate-x-full"
                     }`}>
                     <div
@@ -128,7 +132,7 @@ export default function CreateListing() {
                       </svg>
                     </div>
 
-                    <div className="relative w-full h-full">
+                    <div className="relative  w-full h-full">
                       <LocationPicker
                         onLocationSelected={(
                           locationInfo: {
@@ -162,8 +166,9 @@ export default function CreateListing() {
                       />
                     </div>
                   </div>
+                  {/* dialog content container */}
                   <div
-                    className={`bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 transition-transform transform-gpu duration-200 ${
+                    className={`bg-white dark:bg-gray-700 dark:text-white  px-4 pb-4 pt-5 sm:p-6 sm:pb-4 transition-transform transform-gpu duration-200 ${
                       openMap ? "-translate-x-full" : "translate-x-"
                     }`}>
                     <div className="sm:flex sm:items-start">
@@ -177,7 +182,7 @@ export default function CreateListing() {
                         className={`mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full `}>
                         <Dialog.Title
                           as="h3"
-                          className="text-base font-semibold leading-6 text-gray-900">
+                          className="text-base font-semibold leading-6 text-gray-900 dark:text-white">
                           Create New Listing
                         </Dialog.Title>
                         <GeneralInput
@@ -302,7 +307,7 @@ export default function CreateListing() {
                                 viewBox="0 0 24 24"
                                 strokeWidth={1.5}
                                 stroke="currentColor"
-                                className="w-6 h-6 text-gray-800 cursor-pointer">
+                                className="w-6 h-6 text-gray-800 dark:text-white cursor-pointer">
                                 <path
                                   strokeLinecap="round"
                                   strokeLinejoin="round"
@@ -411,7 +416,7 @@ export default function CreateListing() {
                       </div>
                     )
                   }
-                  <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 justify-between">
+                  <div className="bg-gray-50  dark:bg-gray-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 justify-between">
                     <button
                       type="button"
                       className="inline-flex relative px-6 w-full justify-center items-center rounded-md bg-blue-600 cursor-pointer  py-2 text-sm font-semibold text-white shadow-sm  hover:bg-blue-500 sm:ml-3 sm:w-auto"
@@ -450,13 +455,16 @@ export default function CreateListing() {
       </Transition.Root>
 
       <div>
-        <div
-          onClick={() => setOpenDialog(true)}
-          className="ml-4 rounded-md w-36 h-[40px] cursor-pointer bg-blue-500 text-white hover:bg-blue-400 flex items-center justify-center">
-          Create New
-        </div>
-        <div className="h-full grid grid-rows-[1fr,6fr] bg-white rounded-md p-4 text-gray-900">
-          <p className="text-xl ">Active Listings</p>
+        {/** listings list container */}
+        <div className="h-full dark:bg-gray-700 dark:text-white grid grid-rows-[1fr,6fr] bg-white rounded-md p-4 text-gray-900">
+          <div className="flex justify-between items-center">
+            <p className="text-xl ">Active Listings</p>
+            <div
+              onClick={() => setOpenDialog(true)}
+              className="ml-4  rounded-md w-36 h-[40px] cursor-pointer bg-blue-500 text-white hover:bg-blue-400 flex items-center justify-center">
+              Create New
+            </div>
+          </div>
           {/** listings container */}
           <div className="flex py-2 w-full h-full overflow-x-scroll">
             {listings.map((listing) => (
@@ -467,6 +475,9 @@ export default function CreateListing() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
+export default dynamic(() => Promise.resolve(CreateListing), {
+  ssr: false,
+});

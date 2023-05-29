@@ -1,7 +1,9 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import "../lib/gsap/gsap/TweenMax.min.js";
+import dynamic from "next/dynamic.js";
 console.log("Tween Max", window.TweenMax);
-export default function LoadingAnimation() {
+function LoadingAnimation() {
   const drop = useRef();
   const drop2 = useRef();
   const outline = useRef();
@@ -137,3 +139,6 @@ export default function LoadingAnimation() {
     </div>
   );
 }
+export default dynamic(() => Promise.resolve(LoadingAnimation), {
+  ssr: false,
+});

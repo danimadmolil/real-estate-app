@@ -17,13 +17,13 @@ const SettingPage = async () => {
     },
   ];
   return (
-    <div className=" w-full overflow-y-scroll gap-5 h-full bg-gray-50 p-2 grid sm:grid-cols-[1fr]   1400:grid-cols-[3fr,1fr]">
+    <div className=" w-full overflow-y-scroll gap-5 h-full dark:bg-gray-800 bg-gray-50 p-2 grid sm:grid-cols-[1fr]   1400:grid-cols-[3fr,1fr]">
       {/** col1 */}
       <div className="grow-0 h-full gap-5 shrink-0  rounded-lg w-full grid 1600:grid-rows-[3fr,1.8fr]">
         {/** col1 row1 (user , Agent Detail) */}
         <div className="grid gap-5  900:grid-cols-[1fr,3fr]">
           {/** col1 row1 col1  (agent personal info)*/}
-          <div className="flex flex-col p-5 bg-white  h-full rounded-lg relative text-gray-800">
+          <div className="flex flex-col p-5 bg-white dark:bg-gray-700 dark:text-white  h-full rounded-lg relative text-gray-800">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -70,7 +70,7 @@ const SettingPage = async () => {
             <div className="border-t-[1px] border-t-gray-300 w-[100%] relative left-1/2 -translate-x-1/2 mt-4 "></div>
           </div>
           {/** col1 row1 col2 (agent detail)*/}
-          <div className="p-4 bg-white h-full rounded-lg text-gray-800">
+          <div className="p-4 bg-white dark:bg-gray-700 dark:text-white h-full rounded-lg text-gray-800">
             <p>Agent detail</p>
             <div className="rounded-full border-t-[1px] border-t-gray-300 w-[100%] relative left-1/2 -translate-x-1/2 mt-4 "></div>
             <p className="text-justify mt-8">
@@ -122,9 +122,9 @@ const SettingPage = async () => {
         <CreateListing />
       </div>
       {/** col2 */}
-      <div className="p-5 h-full w-full shrink-0 bg-white rounded-lg text-gray-900">
+      <div className="p-5 h-full w-full shrink-0 bg-white dark:bg-gray-700 dark:text-white rounded-lg text-gray-900">
         {/** header */}
-        <div className="flex items-center justify-between">
+        <div className="flex  items-center justify-between">
           <h2 className="text-2xl">My Files</h2>
           <div className="rounded-md w-36 h-[40px] cursor-pointer bg-blue-500 text-white hover:bg-blue-400 flex items-center justify-center">
             Add New
@@ -141,7 +141,7 @@ const SettingPage = async () => {
         ].map((item, index) => (
           <div
             key={index}
-            className="p-3 mt-4 shadow-sm rounded-xl hover:bg-gray-100 cursor-pointer bg-white border-gray-100 border flex items-center">
+            className="p-3 mt-4 dark:bg-gray-800  shadow-sm rounded-xl hover:bg-gray-100 cursor-pointer bg-white border-gray-100 dark:border-gray-500 border flex items-center">
             {/** icon */}
             <div className="rounded-full shrink-0 flex items-center justify-center w-11 h-11 900:w-12 900:h-12 1600:w-16 1600:h-16 border-purple-500 bg-purple-200 text-purple-500">
               <svg
@@ -160,8 +160,12 @@ const SettingPage = async () => {
             </div>
             {/** title and subtitle */}
             <div className=" ml-4 flex flex-col">
-              <p className="text-black text-xl 1600:text-2xl">{item.title}</p>
-              <p className="text-gray-600 text-lg 1600:text-xl">{item.sub}</p>
+              <p className="text-black dark:text-white text-xl 1600:text-2xl">
+                {item.title}
+              </p>
+              <p className="text-gray-600 dark:text-gray-400 text-lg 1600:text-xl">
+                {item.sub}
+              </p>
             </div>
             <div className="shrink-0 flex ml-auto items-center justify-center rounded-full bg-green-600 w-7 h-7">
               {item.badge}

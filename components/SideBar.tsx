@@ -11,7 +11,7 @@ const SideBar = ({}) => {
     setActiveTab(window.location.pathname.replace("/", ""));
   }, []);
   return (
-    <div className="fixed bottom-0 justify-around z-40 w-full h-20 md:pt-14 bg-white md:h-full flex md:flex-col items-center md:left-0 md:top-0 md:w-20">
+    <div className="fixed dark:bg-black dark:text-white bottom-0 justify-around z-40 w-full h-20 md:pt-14 bg-white md:h-full flex md:flex-col items-center md:left-0 md:top-0 md:w-20">
       <Link
         href={"/"}
         onClick={() => setActiveTab("home")}
@@ -24,7 +24,7 @@ const SideBar = ({}) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className={`mb-0.5 w-6 h-6 text-gray-900  ${
+          className={`mb-0.5 w-6 h-6 text-gray-900 dark:text-white  ${
             activeTab === "home" && "text-white"
           }`}>
           <path
@@ -37,9 +37,9 @@ const SideBar = ({}) => {
       <Link
         href={"map"}
         onClick={() => setActiveTab("map")}
-        className={`cursor-pointer text-gray-950 rounded-full w-7 h-7 p-2  flex justify-center items-center  box-content ${
+        className={`cursor-pointer text-gray-800 dark:text-white rounded-full w-7 h-7 p-2  flex justify-center items-center  box-content ${
           activeTab === "map" &&
-          "bg-blue-500 text-white transition-all duration-200"
+          "bg-blue-500 text-white  dark:text-white transition-all duration-200"
         }`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,6 @@ const SideBar = ({}) => {
           />
         </svg>
       </Link>
-     
     </div>
   );
 };

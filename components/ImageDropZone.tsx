@@ -57,8 +57,8 @@ export default function ImageUploader({
   }
 
   return (
-    <div className="mt-4 text-gray-950">
-      <label className="block text-sm font-medium leading-6 text-gray-900">
+    <div className="mt-4 text-gray-950 dark:text-gray-400">
+      <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
         {label && label}
       </label>
       <input

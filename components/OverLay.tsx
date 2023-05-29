@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 const houseImages = [
   "https://mir-s3-cdn-cf.behance.net/project_modules/1400/f91cf8167512561.642aa42bc51f4.jpg",
@@ -22,9 +23,11 @@ const OverLay = () => {
           : " circle(1.9rem at 50% 50%)",
       }}
       className={`
+      
+      dark:bg-black
        will-change-[all]
       ${open ? "" : "origin-center -translate-x-1/3 translate-y-1/3  "} 
-      shadow-lg  overflow-hidden px-4 md:px-8 py-5 z-50 rounded-lg h-[calc(88%)] bg-white fixed md:left-24 top-20 w-full md:w-[calc(60%)] lg:w-[60%]  xl:w-2/4`}>
+      shadow-lg transform-gpu  overflow-hidden px-4 md:px-8 py-5 z-50 rounded-lg h-[calc(88%)] bg-white fixed md:left-24 top-20 w-full md:w-[calc(60%)] lg:w-[60%]  xl:w-2/4`}>
       <div onClick={() => setOpen(false)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +35,7 @@ const OverLay = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6 text-gray-900 cursor-pointer">
+          className="w-6 h-6 text-gray-900 dark:text-white cursor-pointer">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -44,7 +47,7 @@ const OverLay = () => {
         onClick={() => {
           setOpen(true);
         }}
-        className={`${
+        className={`transform-gpu ${
           open
             ? "opacity-0 transition-all duration-75 delay-[0.25s]"
             : "opacity-1 transition-all duration-0 delay-[0.6s]"
@@ -64,9 +67,10 @@ const OverLay = () => {
         </svg>
       </div>
       {/** search bar container row */}
-      <div className="w-full gap-3 flex flex-col  xl:grid xl:grid-cols-[2fr,1fr] xl:h-14 h-20 mb-8">
-        {/** search input */}
-        <div className="flex  h-full items-center p-1 rounded-lg bg-gray-100 search">
+      <div className="w-full gap-3 flex flex-col  xl:grid xl:grid-cols-[2fr,1fr]  xl:h-14 h-20 mb-8">
+        {/** container */}
+        <div className="flex  h-full items-center p-1 rounded-lg dark:bg-gray-800  bg-gray-100 search">
+          {/** search input */}
           <div className="flex h-full items-center w-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,27 +87,27 @@ const OverLay = () => {
             </svg>
             <input
               placeholder="global search ..."
-              className="w-full text-gray-800 placeholder:text-gray-700  bg-gray-100 h-full border-none pl-4 focus:border-none focus:outline-none"
+              className="w-full text-gray-800 dark:placeholder:text-gray-300 dark:text-gray-300 placeholder:text-gray-700 dark:bg-gray-800  bg-gray-100 h-full border-none pl-4 focus:border-none focus:outline-none"
             />
           </div>
         </div>
         {/** buy & rent buttons */}
-        <div className="flex shrink px-2 box-content bg-gray-100 p-2 rounded-md   items-center  justify-between">
-          <div className="cursor-pointer  text-gray-900 w-[80px] h-[40px] rounded-md bg-white flex items-center justify-center">
+        <div className="flex shrink px-2 box-content bg-gray-100 dark:bg-gray-800 p-2 rounded-md   items-center  justify-between">
+          <div className="cursor-pointer  text-gray-900 w-[80px] dark:bg-[#90A4AE] dark:text-white h-[40px] rounded-md bg-white flex items-center justify-center">
             Buy
           </div>
-          <div className="cursor-pointer w-[80px] h-[40px] rounded-md bg-blue-600 flex items-center justify-center">
+          <div className="cursor-pointer w-[80px] h-[40px] dark:bg-[#303F9F] dark:text-white rounded-md bg-blue-600 flex items-center justify-center">
             Rent
           </div>
         </div>
       </div>
       {/** filters  */}
-      <div className="items-center h-20 w-full bg-gray-100 flex justify-around rounded-md">
+      <div className="items-center h-20 w-full bg-gray-100 dark:bg-gray-800 flex justify-around rounded-md">
         {/** filter buttons */}
         <div className="text-gray-900 cursor-pointer w-10 md:w-[120px] xl:w-[145px] h-[50px] rounded-md bg-white border border-gray-300 shadow-sm flex items-center justify-center">
           All Price
         </div>
-        <div className="cursor-pointer w-10 md:w-[120px] xl:w-[145px] h-[50px] rounded-md bg-blue-600 flex items-center justify-center">
+        <div className="cursor-pointer w-10 md:w-[120px] xl:w-[145px] h-[50px] rounded-md bg-blue-600 dark:bg-[#303F9F] flex items-center justify-center">
           3-2 Bed
         </div>
         <div className="text-gray-900 cursor-pointer w-10 md:w-[120px] xl:w-[145px] h-[50px] rounded-md bg-white border border-gray-300 shadow-sm flex items-center justify-center">
@@ -130,23 +134,23 @@ const OverLay = () => {
             return (
               <div
                 key={index}
-                className="h-auto flex-col flex border-2 p-2 rounded-lg shadow-md ">
+                className="h-auto pb-4 dark:bg-gray-900  flex-col flex border-2 p-2 rounded-lg shadow-md ">
                 <img
                   src={result}
                   className="object-cover h-52 w-full rounded-lg mb-4 shadow-lg"
                 />
                 <div className="flex  flex-col pl-4">
                   {/** name */}
-                  <p className="text-gray-800 font-semibold text-lg">
+                  <p className="text-gray-800 dark:text-white font-semibold text-lg">
                     Name Of The House
                   </p>
                   {/** price/period */}
                   <div className="flex">
-                    <span className="text-blue-500">488$</span>
-                    <span className="text-gray-600">/mon</span>
+                    <span className="text-blue-500">488$ </span>
+                    <span className="text-gray-600 dark:text-white">/ mon</span>
                   </div>
                   {/** divider */}
-                  <div className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></div>
+                  <div className="h-px my-8 bg-gray-200 dark:bg-white border-0 dark:bg-gray-700"></div>
                   {/** attributes */}
                   <div className="flex justify-between">
                     <div className="w-8 box-content p-1 h-8 flex items-center justify-center rounded-full bg-blue-100">
@@ -238,4 +242,6 @@ OverLay.FallBack = function FallBack() {
   );
 };
 
-export default OverLay;
+export default dynamic(() => Promise.resolve(OverLay), {
+  ssr: false,
+});

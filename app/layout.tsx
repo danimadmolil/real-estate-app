@@ -30,7 +30,8 @@ export default function RootLayout({
               <nav
                 className="ml-auto h-full w-full flex max-w-7xl items-center justify-between "
                 aria-label="Global">
-                <div className="flex w-1/2 items-center p-1 rounded-lg bg-gray-300 search">
+                {/** search */}
+                <div className="flex w-1/2 items-center p-1 rounded-lg bg-gray-300 dark:bg-gray-800 search">
                   <div className="flex w-2/3 m-auto">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +39,7 @@ export default function RootLayout({
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-6 h-6 cursor-pointer text-gray-700">
+                      className="w-6 h-6 cursor-pointer text-gray-700 dark:text-red">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -47,7 +48,7 @@ export default function RootLayout({
                     </svg>
                     <input
                       placeholder="global search ..."
-                      className="w-full text-gray-800 placeholder:text-gray-700  bg-gray-300 border-none pl-4 focus:border-none focus:outline-none"
+                      className="w-full text-gray-800 placeholder:dark:text-white placeholder:text-gray-700 dark:text-white dark:bg-gray-800 bg-gray-300  border-none pl-4 focus:border-none focus:outline-none"
                     />
                   </div>
                   <svg
@@ -56,7 +57,7 @@ export default function RootLayout({
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 ml-auto cursor-pointer p-1 text-gray-700">
+                    className="w-6 h-6 ml-auto cursor-pointer p-1 text-gray-700 dark:text-white">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -71,7 +72,7 @@ export default function RootLayout({
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 pl-4 text-gray-900 box-content cursor-pointer">
+                    className="w-6 h-6 pl-4 text-gray-900 dark:text-white box-content cursor-pointer">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -84,7 +85,7 @@ export default function RootLayout({
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 pl-4 text-gray-900 box-content cursor-pointer">
+                    className="w-6 h-6 pl-4 text-gray-900 box-content cursor-pointer dark:text-white">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
