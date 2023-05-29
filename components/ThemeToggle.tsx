@@ -1,12 +1,13 @@
 "use client";
+import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 type Theme = "dark" | "light" | undefined;
-export default function ThemeToggle() {
+function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(
     localStorage.getItem("theme") as Theme
   );
   useEffect(() => {
-    if (theme) {
+    if (theme && typeof window !== undefined) {
       if (theme === "light") {
         console.log("html", document.getElementsByTagName("html"));
         document.getElementsByTagName("html")[0].classList?.add("dark");
@@ -30,7 +31,7 @@ export default function ThemeToggle() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6 text-gray-950 ml-3 cursor-pointer">
+      className="w-6 h-6 text-gray-950 ml-3 mr-3 cursor-pointer">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -45,7 +46,7 @@ export default function ThemeToggle() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6 text-white cursor-pointer ml-3">
+      className="w-6 h-6 text-white cursor-pointer ml-3 mr-3">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -54,3 +55,7 @@ export default function ThemeToggle() {
     </svg>
   );
 }
+
+export default dynamic(() => Promise.resolve(ThemeToggle), {
+  ssr: false,
+});
